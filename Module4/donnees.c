@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <stddef.h>
 
 #include "donnees.h"
 
@@ -9,13 +10,13 @@ void init_struct_data(char *nom_fichier2)
 {
     printf("Le nom du fichier est %s\n", nom_fichier);
     nom_fichier = nom_fichier2;
-    
+
     lire_fichiercsv(nom_fichier);
 }
 
 void afficher_donnees_brutes2()
 {
-    
+
     lire_fichiercsv(nom_fichier);
 }
 
@@ -42,7 +43,7 @@ void lire_fichiercsv(char *nom_fichiercsv)
     {
         num_ligne++;
 
-        tokens = strtok(ligne, ";"); 
+        tokens = strtok(ligne, ";");
 
         int y = 0;
 
@@ -90,3 +91,26 @@ void afficher_tableau_struct()
  -
  flot-de-données est de type pointeur vers FILE. Il pointe vers le fichier à partir duquel se fait la lecture.
  */
+
+void trouver_min_max()
+{
+    int nombre;
+    int maximum;
+    int minimum;
+
+    for (int i = 0; i < sizeof(Pulsation); i++)
+    {
+        nombre = tab_Pulsations[i].pouls;
+
+        if (nombre > maximum)
+        {
+            maximum = nombre;
+        }
+        if (nombre < minimum)
+        {
+            minimum = nombre;
+        }
+    }
+    printf("Le plus grand pouls est : %d \n",maximum);
+    printf("Le plus petit pouls est : %d \n",minimum);
+}

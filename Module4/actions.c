@@ -73,6 +73,6 @@ void afficher_nombre_lignes_de_donnees_memoire()
 
 void rechercher_les_max_min_pouls()
 {
-
+    trouver_min_max();
 }
 

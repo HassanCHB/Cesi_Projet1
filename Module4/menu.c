@@ -31,7 +31,6 @@ void choix_menu()
     {
         char fichiercsv[256];
 
-        printf("case 0\n");
         printf("saisissez le nom du fichier :\n");
         scanf("%s\n", fichiercsv);
         printf("%s", fichiercsv);
@@ -43,7 +42,6 @@ void choix_menu()
 
     case 1:
     {
-        printf("case1\n");
         afficher_donnees_brutes();
     }
     break;
@@ -74,13 +72,12 @@ void choix_menu()
 
     case 6:
     {
-        printf("case 6");
+        rechercher_les_max_min_pouls();
     }
     break;
 
     case 7:
     {
-        printf("case 7");
         printf("Exit...");
         exit(0);
     }
