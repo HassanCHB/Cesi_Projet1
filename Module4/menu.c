@@ -12,7 +12,7 @@ void afficher_menu()
     printf("4-Afficher la moyenne de pouls dans une plage de temps donnée\n");
     printf("5-Afficher le nombre de lignes de donnees actuellement en memoire\n");
     printf("6-Rechercher et afficher les max/min de pouls (avec le temps associe)\n");
-    printf("7-Quitter l’application\n\n");
+    printf("7-Quitter l application\n\n");
 
     choix_menu();
 }
@@ -23,25 +23,27 @@ void choix_menu()
 
     printf("Choississez entre les options ci-dessus :\n");
     scanf("%d", &choix);
+    fflush(stdin);
 
     switch (choix)
     {
     case 0:
     {
-        char *fichiercsv;
+        char fichiercsv[256];
 
-        printf("case 0");
+        printf("case 0\n");
         printf("saisissez le nom du fichier :\n");
-        scanf("%s", fichiercsv);
+        scanf("%s\n", fichiercsv);
         printf("%s", fichiercsv);
         charger_fichiercsv_en_memoire(fichiercsv);
-        lire_fichiercsv(fichiercsv);
+
+
     }
     break;
 
     case 1:
     {
-        printf("case1");
+        printf("case1\n");
         afficher_donnees_brutes();
     }
     break;
@@ -79,6 +81,8 @@ void choix_menu()
     case 7:
     {
         printf("case 7");
+        printf("Exit...");
+        exit(0);
     }
     break;
 

@@ -3,24 +3,20 @@
 #include <string.h>
 #include <assert.h>
 
-typedef struct
-{
-    char* temps;
-    char* pouls;
+#include "donnees.h"
 
-} Pulsation;
-
-Pulsation puls;
-
-Pulsation tab_Pulsations[];
-
-void init_struct_data(char *nom_fichier)
+void init_struct_data(char *nom_fichier2)
 {
     printf("Le nom du fichier est %s\n", nom_fichier);
+    nom_fichier = nom_fichier2;
+    
+    lire_fichiercsv(nom_fichier);
 }
 
-void afficher_donnees_brutes()
+void afficher_donnees_brutes2()
 {
+    
+    lire_fichiercsv(nom_fichier);
 }
 
 void lire_fichiercsv(char *nom_fichiercsv)
@@ -28,8 +24,8 @@ void lire_fichiercsv(char *nom_fichiercsv)
     //----------------------- ouverture du fichier de donnees CSV ------------------------------
     FILE *fic;
     char ligne[1000];
-    short int num_ligne = 0;
-    char* tokens;
+    int num_ligne = 0;
+    char *tokens;
 
     fic = fopen(nom_fichiercsv, "rt");
 
@@ -45,34 +41,31 @@ void lire_fichiercsv(char *nom_fichiercsv)
     while (fgets(ligne, 1000, fic) != NULL)
     {
         num_ligne++;
-        if (num_ligne != 1)
-        {
-            tokens = strtok(ligne, ";"); // appel d'initialisation de strtok. Separateur = ';'
 
-            int y = 0;
-            
-            while (tokens != NULL)
+        tokens = strtok(ligne, ";"); 
+
+        int y = 0;
+
+        while (tokens != NULL)
+        {
+
+            y++;
+
+            if (y == 1)
             {
-                
-                y++;    
-                
-                if(y == 1)
-                    {
-                        printf("--%s\n", tokens);
-                        puls.temps = tokens;
-                    }
-                else if(y == 2)
-                    {
-                        printf("//%s\n", tokens);
-                        puls.pouls = tokens;
-                        tab_Pulsations[k] = puls;
-                        
-                    }
-                    tokens = strtok(NULL, "");       
+                // printf("--%s\n", tokens);
+                puls.temps = atoi(tokens);
             }
-            
-           
-            
+            else if (y == 2)
+            {
+                // printf("//%s\n", tokens);
+                puls.pouls = atoi(tokens);
+                tab_Pulsations[k] = puls;
+
+                printf("Temps :%i\n", tab_Pulsations[k].temps);
+                printf("Pouls :%i\n", tab_Pulsations[k].pouls);
+            }
+            tokens = strtok(NULL, "");
         }
         k++;
     }
@@ -81,12 +74,11 @@ void lire_fichiercsv(char *nom_fichiercsv)
 
 void afficher_tableau_struct()
 {
-    
-    for(int i = 0; i < 10 ; i++)
+
+    for (int i = 0; i < 10; i++)
     {
-        printf("%i", i);
-        printf("le temps :%s\n", tab_Pulsations[i].temps);
-        printf("le pouls :%s\n", tab_Pulsations[i].pouls);
+        printf("le temps :%i\n", tab_Pulsations[i].temps);
+        printf("le pouls :%i\n", tab_Pulsations[i].pouls);
     }
 }
 /*

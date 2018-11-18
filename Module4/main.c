@@ -5,15 +5,11 @@
 
 int main(int argc, char *argv[])
 {
-    char *nom_fichier = argv[1];
+    nom_fichier = argv[1];
 
-    //init_struct_data(nom_fichier);
+    init_struct_data(nom_fichier);
 
-    //afficher_menu();
-
-    lire_fichiercsv(nom_fichier);
-
-    afficher_tableau_struct();
+    afficher_menu();
 
     return 0;
 }
